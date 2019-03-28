@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+    </style>
+    <script src="vue.js"></script>
+    <script>
+        var c = undefined;
+        window.onload=function(){
+            c=new Vue({
+                el:'#box',
+                data:{
+                    loginType: 'username'
+                },
+                methods:{
+                    toggle() {
+                        if (this.loginType === 'username') {
+                            this.loginType = 'email'
+                        } else {
+                            this.loginType = 'username'
+                        }
+                    }
+                }
+            });
+        };
+
+    </script>
+</head>
+<body>
+    <div id="box">
+        <p>
+            那么在上面的代码中切换 loginType 将不会清除用户已经输入的内容。因为两个模板使用了相同的元素，
+            <br>
+            <code>&lt;input&gt;</code> 不会被替换掉——仅仅是替换了它的 placeholder。
+            <br>
+            所以 Vue 为你提供了一种方式来表达“这两个元素是完全独立的，不要复用它们”。只需添加一个具有唯一值的 key 属性即可：
+        </p>
+        <template v-if="loginType === 'username'">
+            <label>Username</label>
+            <input placeholder="Enter your username" key="username-input">
+        </template>
+        <template v-else>
+            <label>Email</label>
+            <input placeholder="Enter your email address" key="email-input">
+        </template>
+        <hr>
+        <input type="button" @click="toggle" value="toggle login type">
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

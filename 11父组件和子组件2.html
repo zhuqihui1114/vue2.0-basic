@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智能社——http://www.zhinengshe.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="vue.js"></script>
+    <script>
+        window.onload=function(){
+            new Vue({
+                el:'#box',
+                data:{
+                    fu_a:'我是父组件数据'
+                },
+                methods:{
+                    getZi(val){
+                        this.fu_a = val;
+                    },
+                    change() {
+                        this.fu_a = '父组件数据改变了';
+                    }
+                },
+                components:{
+                    'child-com':{
+                        data(){
+                            return {
+                                zi_a:'子组件信息'
+                            }
+                        },
+                        template:'#child',
+                        methods:{
+                            sendFu(){
+                                this.$emit('child-msg',this.zi_a);
+                            }
+                        }
+                    }
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <template id="child">
+        <div>
+            <span>我是子组件</span>
+            <input type="button" value="发送到父组件" @click="sendFu">
+            <br>
+            子组件内的信息：<strong>{{zi_a}}</strong>
+        </div>
+    </template>
+
+    <div id="box">
+        父级: ->{{fu_a}}
+        <input type="button" value="改变" @click="change">
+        <br>
+        <child-com @child-msg="getZi"></child-com>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

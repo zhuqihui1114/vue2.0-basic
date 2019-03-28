@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>智能社——http://www.zhinengshe.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="vue.js"></script>
+    <script>
+        window.onload=function(){
+            new Vue({
+                el:'#box',
+                data:{
+                    a:'我是父组件数据'
+                },
+                components:{
+                    'child-com':{
+                        props:['msg'],
+                        template:'#child',
+                        data: function () {
+                            return {
+                                counter: this.msg
+                            }
+                        },
+                        methods:{
+                            change(){
+                                this.counter='被更改了'
+                            }
+                        }
+                    }
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+<template id="child">
+    <div>
+        <span>我是子组件</span>
+        <input type="button" value="按钮" @click="change">
+        <br>
+        props：<strong>{{msg}}</strong>
+        <br>
+        data：<strong>{{counter}}</strong>
+    </div>
+</template>
+
+<div id="box">
+    <h1>
+        测试vue2.0 子组件与父组件的数据绑定
+    </h1>
+    父级: ->{{a}}
+    <br>
+    <child-com :msg="a"></child-com>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

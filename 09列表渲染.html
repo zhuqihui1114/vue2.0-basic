@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="vue.js"></script>
+    <script>
+        window.onload=function(){
+            new Vue({
+                el:'#box',
+                data:{
+                    list:['width','height','border'],
+                    object: {
+                        firstName: 'John',
+                        lastName: 'Doe',
+                        age: 30
+                    },
+                    msg:'<strong>welcome</strong>'
+                },
+                methods:{
+                    addProperty1() {
+                        // 这样添加对象属性，不会触发视图更新
+                        this.object.property1 = 'property1'
+                    },
+                    addProperty2() {
+                        // 重新赋值，触发视图更新
+                        this.object = {
+                            firstName: 'John',
+                            lastName: 'Doe',
+                            age: 23,
+                            abc: 'zqh'
+                        }
+                    },
+                    addArray1(){
+                        // this.list.push('background');
+                        // 由于 JavaScript 的限制，Vue 不能检测以下变动的数组：
+                        this.list.length = 1 // 不是响应性的
+                        this.list[0] = 'script' // 不是响应性的
+                    },
+                    addArray2(){
+                        this.list = this.list.filter(item => {
+                            return item.match(/ei/)
+                        })
+                    }
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <div id="box">
+        <p>
+            你也可以用 of 替代 in 作为分隔符，因为它是最接近 JavaScript 迭代器的语法：
+            {{msg}}
+        </p>
+        <input type="button" value="添加对象属性，不会触发视图更新" @click="addProperty1">
+        <input type="button" value="添加对象属性，重新赋值对象" @click="addProperty2">
+        <div>对象遍历：</div>
+        <ul>
+            <li v-for="(value,key,index) in object">
+                {{value}} {{key}} {{index}}
+            </li>
+        </ul>
+        <input type="text" v-model="list[0]">
+        <input type="button" value="添加对象到数组" @click="addArray1">
+        <input type="button" value="filter数组" @click="addArray2">
+        <div>数组遍历：</div>
+        <ul>
+            <li v-for="(val,index) in list">
+                {{val}} {{index}}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

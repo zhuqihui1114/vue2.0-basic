@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="vue.js"></script>
+    <script>
+        window.onload=function(){
+            var c=new Vue({
+                el:'#box',
+                data:{
+                    msg:'welcome vue',
+                    html:'<strong>welcome</strong>'
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <div id="box">
+        {{msg}}
+        <br>
+        {{html}}
+        <br>
+        <span v-text="html" :title="msg"></span>
+        <br>
+        <span v-html="html"></span>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

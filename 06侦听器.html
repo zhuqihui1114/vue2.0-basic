@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="vue.js"></script>
+    <script>
+        //注意：加不加{deep:true}的变化
+
+        window.onload=function(){
+            var vm=new Vue({
+                el:'#box',
+                data:{
+                    json: {
+                        name:'strive',
+                        age:16
+                    },
+                    b:2
+                },
+                watch: {
+                    // json(newVal, oldVal) {
+                    //     console.log('newVal：' + newVal)
+                    //     console.log('oldVal：' + oldVal)
+                    // }
+                },
+                methods: {
+                    change() {
+                        this.json.name = 'zqh'
+                    }
+                }
+            });
+
+            vm.$watch('json',function(newVal, oldVal){
+                console.log('发生变化了')
+                console.log('newVal：' + newVal.name)
+                console.log('oldVal：' + oldVal.name)
+            },{deep:true});
+        };
+
+    </script>
+</head>
+<body>
+<div id="box">
+    <button @click="change">修改name值</button>
+    <hr>
+    {{json}}
+    <br>
+    {{b}}
+    <hr>
+    <input type="text" v-model="json.name">
+</div>
+
+</body>
+</html>

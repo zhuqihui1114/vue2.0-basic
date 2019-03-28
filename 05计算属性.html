@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="vue.js"></script>
+    <script>
+
+    </script>
+</head>
+<body>
+    <div id="box">
+        {{fullName}}
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#box',
+            data: {
+                firstName: 'Foo',
+                lastName: 'Bar'
+            },
+            watch: {
+            },
+            computed: {
+                // fullName: function () {
+                //     return this.firstName + ' ' + this.lastName
+                // },
+                fullName: {
+                    // getter
+                    get: function () {
+                        return this.firstName + ' ' + this.lastName
+                    },
+                    // setter
+                    set: function (newValue) {
+                        var names = newValue.split(' ')
+                        this.firstName = names[0]
+                        this.lastName = names[names.length - 1]
+                    }
+                }
+            }
+        });
+
+        document.onclick=function(){
+            // vm.fullName = 'John Doe'
+            vm.lastName = 'zqh'
+        };
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
