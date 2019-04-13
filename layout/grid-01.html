@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <div class="item-a">haeder</div>
+        <div class="item-b">main</div>
+        <div class="item-c">sidebar</div>
+        <div class="item-d">footer</div>
+    </div>
+</body>
+</html>
+<style>
+
+.container {
+    height: 800px;
+    display: grid;
+    grid-template-columns: 100px 50px 100px auto;
+    grid-template-rows: 90px 90px 90px 90px;
+    /*grid-template-rows: auto;*/
+    grid-template-areas:
+            "header header header header"
+            "main main . sidebar"
+            "footer footer footer footer";
+    grid-gap: 10px 15px; /** 横向间距 、 纵向间距 **/
+    justify-items: stretch; /**网格内 横坐标 start、end、center、stretch **/
+    align-items: center; /**网格内 纵坐标 start、end、center、stretch **/
+    justify-content: center; /** 网格外布局  横坐标**/
+    align-content: space-between;  /** 网格外布局  纵坐标**/
+}
+
+.item-a {
+    grid-area: header;
+    background: #2a6496;
+}
+.item-b {
+    grid-area: main;
+    background: #2b542c;
+    justify-self: start; /** 与 justify-items 相似，只不过它作用于单个项目 **/
+    align-self: start; /** 与 align-items 相似，只不过它作用于单个项目 **/
+}
+.item-c {
+    grid-area: sidebar;
+    background: #5bc0de;
+}
+.item-d {
+    grid-area: footer;
+    background: #67b168;
+}
+</style>
